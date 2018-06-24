@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>文件修改器</title>
+    </head>
+    <body>
+       <p>请输入文件信息：</p>
+        <!-- All of the Node.js APIs are available in this renderer process. -->
+        <div>
+            <span>输入原文件地址：</span>
+            <input type="text" name="dir" id="dir" value="/Users/helloworld/study/mail_files_changer/sourceFile/中国建设银行信用卡电子账单[2].eml"/>
+            <span>输入目标文件存放目录：</span>
+            <input type="text" name="dir" id="targetDir" value="/Users/helloworld/study/mail_files_changer/changedFile"/>
+        </div>
+        <br />
+         
+<p>请输入修改信息：</p>
+         <div>
+            <span>输入原邮件地址：</span>
+            <input type="text" name="dir" id="sourceMail" value="79731859"/>
+
+            <span>输入目标邮件地址：</span>
+            <input type="text" name="dir" id="targetMail" value="222"/>
+        </div>
+       
+         
+         <div>
+            <span>输入原用户名称：</span>
+            <input type="text" name="dir" id="sourceName"/>
+            <span>输入目标用户名称：</span>
+            <input type="text" name="dir" id="targetName"/>
+        </div>
+         <div>
+            
+        </div>
+        <div>
+            <span>输入原卡号后四位：</span>
+            <input type="text" name="dir" id="sourceCard"/>
+             <span>输入目标卡号后四位：</span>
+            <input type="text" name="dir" id="targetCard"/>
+        </div>
+        <div>
+           
+        </div>
+         <div>
+            <span>输入原消费城市：</span>
+            <input type="text" name="dir" id="sourceCity"/>
+             <span>输入目标消费城市：</span>
+            <input type="text" name="dir" id="targetCity"/>
+        </div>
+
+         <div>
+            <span>原账单－其它一：</span>
+            <input type="text" name="dir" id="sourceOther1"/>
+             <span>目标账单－其它一：</span>
+            <input type="text" name="dir" id="targetOther1"/>
+        </div>
+        <div>
+            <span>原账单－其它二：</span>
+            <input type="text" name="dir" id="sourceOther2"/>
+             <span>目标账单－其它二：</span>
+            <input type="text" name="dir" id="targetOther2"/>
+        </div>
+        
+        <button class="handleBtn" id="handleBtn">开始修改</button>
+        <p class="result"></p>
+
+        <script>
+          // You can also require other files to run in this process
+          require('./renderer.js')
+        </script>
+    </body>
+</html>
