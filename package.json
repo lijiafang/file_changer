@@ -4,7 +4,8 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "packager": "electron-packager ./ FileTools --platform=win32  --arch=x64 --out=../ --overwrite"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -20,6 +21,9 @@
     "electron": "^2.0.0"
   },
   "dependencies": {
+    "emailjs-mime-codec": "^2.0.7",
+    "getmac": "^1.4.3",
+    "iconv-lite": "^0.4.23",
     "jquery": "^3.3.1"
   }
 }

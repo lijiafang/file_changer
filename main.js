@@ -1,27 +1,40 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
-
+const macInfo = require('./info.js');
+const util = require('getmac')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
-console.log('test')
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
-
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
-  })
+    util.getMac(function(err, macAddress){
+        if (err)  throw err
+        // let flag = false;
+        let flag = true;
+        macInfo.every((item) => {
+            let info = (new Buffer(item, 'base64')).toString();
+            if (info === macAddress) {
+                flag = true;
+                return false;
+            }
+        });
+        if (flag) {
+            mainWindow = new BrowserWindow({width: 1600, height: 1200})
+            // and load the index.html of the app.
+            mainWindow.loadFile('index.html');
+        }
+        else {
+            mainWindow = new BrowserWindow({width: 400, height: 300})
+            mainWindow.loadFile('noauth.html')
+        }
+        mainWindow.on('closed', function () {
+            // Dereference the window object, usually you would store windows
+            // in an array if your app supports multi windows, this is the time
+            // when you should delete the corresponding element.
+            mainWindow = null
+        })
+    })
 }
 
 // This method will be called when Electron has finished

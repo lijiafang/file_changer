@@ -1,0 +1,50 @@
+body {
+	padding: 20px;
+}
+input {
+	height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    width: 20%;
+}
+span {
+	width: 20%;
+    display: inline-block;
+    text-align: right;
+}
+div {
+	margin-bottom: 20px;
+}
+button {
+	width: 100px;
+    height: 40px;
+    font-size: 16px;
+    background: #3385ff;
+    border: 0;
+    color: #fff;
+}
+.input-wrap {
+	width: 60%;
+	float: left;
+}
+.wrap-title {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    background: #eee;
+}
+.big-input {
+    width: 80%;
+}
+.button-wrap {
+	text-align: right;
+	padding-right: 30px;
+}
+.result-wrap {
+	display: inline-block;
+    width: 35%;
+    border: 1px solid #eee;
+    float: right;
+    min-height: 600px;
+    padding: 0 10px;
+}

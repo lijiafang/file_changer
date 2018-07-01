@@ -1,6 +1,27 @@
 var readline = require('readline');  
 var fs = require('fs');  
 var path = require('path');
+var utils = require('./utils');
+
+var isDir = (dirPath, info) => {
+	return new Promise((resolve, reject) => {
+		fs.stat(dirPath,function(err,stats){
+            if(err){
+            	console.log(err);
+            	reject(info + ':目录地址有误!');
+            }else{
+                var isFile = stats.isFile();//是文件
+                var isDir = stats.isDirectory();//是文件夹
+                if(isFile){
+                	reject(info + ':目录地址有误!')
+                }
+                if(isDir){
+                	resolve('dir');
+                }
+            }
+        })
+	});
+}
 
 var handleFile = (data, source, target) => {
 	let dataList = (data.toString()).split('Content-Transfer-Encoding: base64');
@@ -47,25 +68,45 @@ var readFile = (fRead) => {
 	});
 	 
 }
-	
+var readDir = (dirPath) => {
+    //根据文件路径读取文件，返回文件列表
+    return new Promise((resolve, reject) => {
+    	fs.readdir(dirPath, function(err,files){
+	        if(err){
+	        	reject('读取原文件目录失败！');
+	        }else{
+	        	resolve(files);
+	        }
+	    });
+    })
+}	
 
+var printInfo = (info, callback) => {
+	callback && callback(info)
+}
 
-var main = (dir, targetDir, source, target) => {
-	// var dir = '/Users/helloworld/Downloads/中国建设银行信用卡电子账单[1].eml';
-	// var fReadName = '中国建设银行信用卡电子账单[1].eml';  
+var main = (dir, targetDir, source, target, callback) => {
 	dir = path.resolve(dir);
-	targetDir = targetDir ? targetDir : path.dirname(dir);
-	fs.exists(targetDir, function(exists) {  
-		if (!exists) {
-			alert('目标目录不存在!')
-		}
-		else {
-			let targetFileDir = path.resolve(targetDir + '/'+  path.basename(dir));
-			var fRead = fs.createReadStream(dir); 
+	targetDir = targetDir ? path.resolve(targetDir) : path.dirname(dir);
 
+	isDir(targetDir, '目标文件')
+	.then((value) => {
+		return isDir(dir, '原文件');
+	})
+	.then((value) => {
+		return readDir(dir);
+	})
+	.then((files) => {
+		files.forEach((item) => {
+			if (/^\./.test(item)) {
+				return;
+			}
+			var fileName = path.join(dir, item);
+			var fRead = fs.createReadStream(fileName); 
+			let targetFileDir = path.resolve(targetDir + '/'+  path.basename(fileName));
 			readFile(fRead).then((fileInfo) => {
 				if (fileInfo === 500) {
-					console.log('读取文件失败');
+					printInfo('-读取失败:' + fileName, callback);
 				}
 				else {
 					let {data, lastLine} = fileInfo;
@@ -73,15 +114,18 @@ var main = (dir, targetDir, source, target) => {
 					let result = `${handleResult}\n${lastLine}`;
 					fs.writeFile(targetFileDir, result,  function(err) {
 					   	if (err) {
-					       	return console.error(err);
+							printInfo('-写入失败:' + fileName, callback);
 					   	}
-					   	// console.log("数据写入成功！");
-					   	alert('修改文件成功！');
+					   	else {
+							printInfo('-成功:' + fileName, callback);
+					   	}
 					});
 				}
 			}); 
-		}
-	
+		});
+	})
+	.catch((e) => {
+		printInfo(e, callback);
 	});
 }
 module.exports = main;

@@ -3,68 +3,89 @@
     <head>
         <meta charset="UTF-8">
         <title>文件修改器</title>
-    </head>
+        <link rel="stylesheet" type="text/css" href="./index.css">    </head>
     <body>
-       <p>请输入文件信息：</p>
+        <div class="input-wrap">
+        <p class="wrap-title">请输入文件信息：</p>
         <!-- All of the Node.js APIs are available in this renderer process. -->
         <div>
-            <span>输入原文件地址：</span>
-            <input type="text" name="dir" id="dir" value="/Users/helloworld/study/mail_files_changer/sourceFile/中国建设银行信用卡电子账单[2].eml"/>
-            <span>输入目标文件存放目录：</span>
-            <input type="text" name="dir" id="targetDir" value="/Users/helloworld/study/mail_files_changer/changedFile"/>
+            <p>原文件目录：</p>
+            <input class="big-input" type="text" name="dir" id="dir" value=""/>
+            <p>目标文件存放目录：(该项不填写，默认直接覆盖原文件目录)</p>
+            <input class="big-input" type="text" name="dir" id="targetDir" value=""/>
         </div>
-        <br />
          
-<p>请输入修改信息：</p>
-         <div>
-            <span>输入原邮件地址：</span>
-            <input type="text" name="dir" id="sourceMail" value="79731859"/>
 
-            <span>输入目标邮件地址：</span>
-            <input type="text" name="dir" id="targetMail" value="222"/>
+          <p class="wrap-title">修改内容信息</p>
+
+         <div>
+            <span class="info-tip">原邮件地址：</span>
+            <input type="text" name="dir" id="sourceMail" value=""/>
+
+            <span class="info-tip">目标邮件地址：</span>
+            <input type="text" name="dir" id="targetMail" value=""/>
         </div>
        
          
          <div>
-            <span>输入原用户名称：</span>
-            <input type="text" name="dir" id="sourceName"/>
-            <span>输入目标用户名称：</span>
-            <input type="text" name="dir" id="targetName"/>
+            <span class="info-tip">原用户名称：</span>
+            <input type="text" name="dir" id="sourceName" value=""/>
+            <span class="info-tip">目标用户名称：</span>
+            <input type="text" name="dir" id="targetName" value=""/>
         </div>
-         <div>
-            
-        </div>
+        
         <div>
-            <span>输入原卡号后四位：</span>
-            <input type="text" name="dir" id="sourceCard"/>
-             <span>输入目标卡号后四位：</span>
-            <input type="text" name="dir" id="targetCard"/>
+            <span class="info-tip">原卡号后四位：</span>
+            <input type="text" name="dir" id="sourceCard" value=""/>
+             <span class="info-tip">目标卡号后四位：</span>
+            <input type="text" name="dir" id="targetCard" value=""/>
         </div>
-        <div>
-           
-        </div>
+       
          <div>
-            <span>输入原消费城市：</span>
-            <input type="text" name="dir" id="sourceCity"/>
-             <span>输入目标消费城市：</span>
-            <input type="text" name="dir" id="targetCity"/>
+            <span class="info-tip">原消费城市：</span>
+            <input type="text" name="dir" id="sourceCity" value=""/>
+             <span class="info-tip">目标消费城市：</span>
+            <input type="text" name="dir" id="targetCity" value=""/>
         </div>
 
          <div>
-            <span>原账单－其它一：</span>
-            <input type="text" name="dir" id="sourceOther1"/>
-             <span>目标账单－其它一：</span>
-            <input type="text" name="dir" id="targetOther1"/>
+            <span class="info-tip">原文件－其它一：</span>
+            <input type="text" name="dir" id="sourceOther1" value=""/>
+             <span class="info-tip">目标文件－其它一：</span>
+            <input type="text" name="dir" id="targetOther1" value=""/>
         </div>
         <div>
-            <span>原账单－其它二：</span>
-            <input type="text" name="dir" id="sourceOther2"/>
-             <span>目标账单－其它二：</span>
-            <input type="text" name="dir" id="targetOther2"/>
+            <span class="info-tip">原文件－其它二：</span>
+            <input type="text" name="dir" id="sourceOther2" value=""/>
+             <span class="info-tip">目标文件－其它二：</span>
+            <input type="text" name="dir" id="targetOther2" value=""/>
         </div>
-        
-        <button class="handleBtn" id="handleBtn">开始修改</button>
-        <p class="result"></p>
+         <div>
+            <span class="info-tip">原文件－其它三：</span>
+            <input type="text" name="dir" id="sourceOther3" value=""/>
+             <span class="info-tip">目标文件－其它三：</span>
+            <input type="text" name="dir" id="targetOther3" value=""/>
+        </div>
+        <div>
+            <span class="info-tip">原文件－其它四：</span>
+            <input type="text" name="dir" id="sourceOther4" value=""/>
+             <span class="info-tip">目标文件－其它四：</span>
+            <input type="text" name="dir" id="targetOther4" value=""/>
+        </div>
+         <div>
+            <span class="info-tip">原文件－其它五：</span>
+            <input type="text" name="dir" id="sourceOther5" value=""/>
+             <span class="info-tip">目标文件－其它五：</span>
+            <input type="text" name="dir" id="targetOther5" value=""/>
+        </div>
+        <div class="button-wrap">
+             <button class="handleBtn" id="handleBtn">开始修改</button>
+
+        </div>
+        </div>
+        <div class="result-wrap">
+            <div id="result"></div>
+        </div>
 
         <script>
           // You can also require other files to run in this process
